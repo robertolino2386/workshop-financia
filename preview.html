@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>FinanC.IA - Workshop 1º</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: #00285C;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      background: #ffffff;
+      border: 1px solid #e6e6e6;
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 8px 24px rgba(0, 40, 92, 0.12);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00285C;
+      margin-bottom: 8px;
+      font-size: 26px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #69A0D3;
+      margin-bottom: 28px;
+      font-size: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #00285C;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 18px;
+      border: 1px solid #cfd8e3;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      background: #ffffff;
+      color: #00285C;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #69A0D3;
+      box-shadow: 0 0 0 3px rgba(105, 160, 211, 0.18);
+    }
+
+    button {
+      width: 100%;
+      background: #00285C;
+      color: #ffffff;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #69A0D3;
+    }
+
+    .footer {
+      margin-top: 26px;
+      text-align: center;
+      color: #c4c4c4;
+      font-size: 13px;
+    }
+
+    .footer strong {
+      color: #9c9c9c;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>FinanC.IA - Workshop 1º</h1>
+
+    <p class="subtitle">
+      Agende sua presença - 1º Encontro
+    </p>
+
+    <form id="formTreinamento">
+
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" required />
+
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="departamento">Departamento</label>
+
+      <select id="departamento" name="departamento" required>
+        <option value="">Selecione o departamento</option>
+        <option>Conciliação</option>
+        <option>Controladoria</option>
+        <option>Financeiro</option>
+        <option>Produtos Financeiros</option>
+      </select>
+
+      <label for="supervisao">Supervisão</label>
+      <input type="text" id="supervisao" name="supervisao" required />
+
+      <label for="dataEscolhida">Data Escolhida</label>
+
+      <select id="dataEscolhida" name="dataEscolhida" required>
+        <option value="">Selecione uma data</option>
+        <option>29/05/2026 das 15h às 17h</option>
+        <option>02/06/2026 das 10h às 12h</option>
+        <option>03/06/2026 das 10h às 12h</option>
+        <option>05/06/2026 das 15h às 17h</option>
+      </select>
+
+      <button type="submit">
+        Enviar Agendamento
+      </button>
+
+    </form>
+
+    <div class="footer">
+      desenvolvido por:
+      <strong>Roberto Lino</strong>
+    </div>
+
+  </div>
+
+<script>
+
+  const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbzzY5uEv978GGXMioDty29snbqADiDpaYt8t4syAq11GbQvQeN0_sDMXM3clqJhuCpp/exec";
+
+  document.getElementById("formTreinamento").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const dados = {
+      nome: document.getElementById("nome").value,
+      email: document.getElementById("email").value,
+      departamento: document.getElementById("departamento").value,
+      supervisao: document.getElementById("supervisao").value,
+      dataEscolhida: document.getElementById("dataEscolhida").value
+    };
+
+    fetch(URL_APPS_SCRIPT, {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(dados)
+    });
+
+    alert("Agendamento enviado com sucesso!");
+
+    document.getElementById("formTreinamento").reset();
+
+  });
+
+</script>
+
+</body>
+</html>
